@@ -31,7 +31,9 @@
 - A 24px circle with the finding number, placed on the top-left corner of the affected layer's bounding box.
 - The pin color matches the severity.
 - Pins at the same spot are offset by 28px.
-- Figma can place a new group somewhere other than the coordinates of its children. After creating the pin group, compare one pin with its target's `absoluteBoundingBox`. If they differ, move the whole group by that difference, then check two more pins.
+- Do not build the pin group with `$fig.group`. That group renders a white box over its whole bounds and hides the designs. Create the pins with `$fig`, flush with `await $fig.done()`, then group the real pin nodes with `figma.group(pins, page)`, name the group, and lock it.
+- After grouping, compare one pin with its target's `absoluteBoundingBox`. If they differ, move the whole group by that difference, then check two more pins.
+- Take a screenshot of the whole page after writing. Any large white or empty area over the designs means something went wrong.
 - Screenshots of a frame or section do not show the pins, because they are page-level nodes. Verify the pins by their positions, not by screenshots.
 
 ## Colors
