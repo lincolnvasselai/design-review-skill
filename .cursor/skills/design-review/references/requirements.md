@@ -16,6 +16,7 @@ Record conflicts between sources as Unclear, and cite both sources.
 - Keep the wording close to the source. Do not invent detail.
 - Turn Gherkin (`Given / When / Then`) into one R per `Then`.
 - Implicit requirements: if the card says "form", the form needs validation and error states. Add these as R items marked `implicit`, and check them under States.
+- When the source gives a count ("the seven states"), compare it with the items it lists. A mismatch is an Unclear R.
 - Tag each R with its type: `screen`, `component`, `flow`, `copy`, `state`, `breakpoint`, `a11y`, or `data`.
 
 ## Format

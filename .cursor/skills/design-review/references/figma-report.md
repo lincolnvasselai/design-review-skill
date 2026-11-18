@@ -31,17 +31,20 @@
 - A 24px circle with the finding number, placed on the top-left corner of the affected layer's bounding box.
 - The pin color matches the severity.
 - Pins at the same spot are offset by 28px.
+- Figma can place a new group somewhere other than the coordinates of its children. After creating the pin group, compare one pin with its target's `absoluteBoundingBox`. If they differ, move the whole group by that difference, then check two more pins.
+- Screenshots of a frame or section do not show the pins, because they are page-level nodes. Verify the pins by their positions, not by screenshots.
 
 ## Colors
 
-Use fixed review colors so the review never picks up the brand's variables:
+Use fixed review colors so the review never picks up the brand's variables. All chips and pins use white text, and each color passes 4.5:1 against white:
 
 | Use | Color |
 |---|---|
-| blocker | `#D92D20` |
-| major | `#F79009` |
-| minor | `#2E90FA` |
-| Done | `#12B76A` |
+| blocker, Missing | `#D92D20` |
+| major, Partial | `#B54708` |
+| minor | `#175CD3` |
+| Done | `#067647` |
+| Unclear | `#475467` |
 | Section background | `#F9FAFB` |
 | Text | `#101828` |
 
