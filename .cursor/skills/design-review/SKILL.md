@@ -17,15 +17,29 @@ Reads what was asked in Jira and Confluence, reads what was designed in Figma, a
 
 Read [references/requirements.md](references/requirements.md), [references/accessibility.md](references/accessibility.md), [references/states.md](references/states.md), [references/heuristics.md](references/heuristics.md), and [references/figma-report.md](references/figma-report.md) before starting.
 
-Load the `figma-use` skill before any `use_figma` call. Ask in the user's language. Use AskQuestion for every choice.
+Load the `figma-use` skill before any `use_figma` call. Reply in the user's language.
+
+Start the review in the same turn the user gives a Jira key and a Figma URL. Do not ask which checks to run, which frames to include, or to confirm the links. Run every check. The only question comes after the summary, before writing to Figma.
+
+Ask only when something required is missing, and ask for that one thing in a sentence:
+
+- No Jira key and no requirements pasted in the chat.
+- No Figma URL.
+- A Figma URL with no `node-id` in a file that has more than one page.
 
 ## 1. Inputs
 
-1. Ask for the Jira key and the Figma URL. Use the AskQuestion "Other" field for free text. Skip anything the user already gave.
-2. Ask which checks to run. All are on by default: requirements, accessibility, states, heuristics, design system, content, handoff, edge-case data.
-3. Ask the scope: the whole page, or only the frames the user names or selects.
+Take the Jira key from a key like `AP-3966` or from a `atlassian.net/browse/` URL. Take the Figma file from `figma.com/design/:fileKey/:name?node-id=1-2`, which gives `fileKey` and node `1:2`. For a branch URL, use the branch key as the file key.
 
-Parse the Figma URL: `figma.com/design/:fileKey/:name?node-id=1-2` gives `fileKey` and node `1:2`. For branch URLs, use the branch key.
+Scope comes from the node:
+
+- A page: every frame on that page, except sections named `Design review`.
+- A section: the frames inside it.
+- A frame: that frame.
+
+A check the user names as off stays off. Anything they don't mention runs.
+
+Do the requirements, the design read, and the checks without stopping. A doubt becomes an Unclear item in the report, not a question that pauses the review.
 
 ## 2. Requirements
 
@@ -46,11 +60,9 @@ Follow [references/requirements.md](references/requirements.md).
 
 ## 4. Checks
 
-Run only the checks the user kept.
-
 - **Requirements.** Each R gets a status: Done, Partial, Missing, or Unclear. Each Done or Partial status links the frame that answers it. Anything designed that no requirement asks for is listed as Not asked.
 - **Accessibility.** Use [references/accessibility.md](references/accessibility.md). Compute contrast from fill values, not from screenshots.
-- **States.** Use [references/states.md](references/states.md). When it is unclear whether a state exists, ask instead of guessing.
+- **States.** Use [references/states.md](references/states.md). When it is unclear whether a state exists, mark it Unclear and continue.
 - **Heuristics.** Use [references/heuristics.md](references/heuristics.md) for a short Nielsen pass.
 - **Design system.** Flag hard-coded colors, text without a text style, spacing without variables, and detached instances.
 - **Content.** Flag lorem ipsum, placeholder copy, mixed capitalization, and copy that differs from the spec.
@@ -61,13 +73,9 @@ Severity for each finding is blocker, major, or minor. The rules are in [referen
 
 ## 5. Preview
 
-Post a short summary in chat. Include a score per area, the counts by severity, the Missing and Unclear requirements, and the missing states.
+Post the summary in chat: a score per area, the counts by severity, and the findings, with the blockers first. Keep each finding to what is wrong, why, and the fix.
 
-Then ask with AskQuestion:
-
-- Write the review to Figma.
-- Change something first.
-- Stop without writing anything to Figma.
+Then ask one question: write this into the Figma file? Wait for the answer. A change they ask for updates the summary. Writing nothing leaves the review in the chat.
 
 ## 6. Write to Figma
 

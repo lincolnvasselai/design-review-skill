@@ -30,7 +30,7 @@ Check in this order:
 
 A state counts as designed when any of these shows it. When a state is used by an instance but the component set lacks it, report the component, not the screen.
 
-When unsure, ask the user with AskQuestion instead of marking the state Missing.
+When unsure, mark the state Unclear, say what you looked at, and continue. Do not stop the review to ask. The Unclear item goes into the PM questions.
 
 ## Output
 
