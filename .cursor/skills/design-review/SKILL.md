@@ -17,7 +17,7 @@ Reads what was asked in Jira and Confluence, reads what was designed in Figma, a
 
 Read [references/requirements.md](references/requirements.md), [references/accessibility.md](references/accessibility.md), [references/states.md](references/states.md), [references/heuristics.md](references/heuristics.md), and [references/figma-report.md](references/figma-report.md) before starting.
 
-Load the `figma-use` skill before any `use_figma` call. Reply in the user's language.
+Load the `figma-use` skill before any `use_figma` call. Reply to the user in their language. Write the review itself in Brazilian Portuguese: the summary, the findings, the questions for the PM, and every text that goes into Figma. Keep Jira keys, WCAG numbers, hex colors, component names, variant names, and layer names as they are.
 
 Start the review in the same turn the user gives a Jira key and a Figma URL. Do not ask which checks to run, which frames to include, or to confirm the links. Run every check. The only question comes after the summary, before writing to Figma.
 
@@ -33,7 +33,7 @@ Take the Jira key from a key like `AP-3966` or from a `atlassian.net/browse/` UR
 
 Scope comes from the node:
 
-- A page: every frame on that page, except sections named `Design review`.
+- A page: every frame on that page, except sections named `Revisão de design` or `Design review`.
 - A section: the frames inside it.
 - A frame: that frame.
 
@@ -79,9 +79,9 @@ Then ask one question: write this into the Figma file? Wait for the answer. A ch
 
 ## 6. Write to Figma
 
-Follow [references/figma-report.md](references/figma-report.md). Create a `Design review / <JIRA-KEY> / <YYYY-MM-DD>` section to the right of the reviewed frames. It contains the summary, the requirement checklist, numbered pins with finding cards, and dashed placeholders for missing states.
+Follow [references/figma-report.md](references/figma-report.md). Create a `Revisão de design / <JIRA-KEY> / <YYYY-MM-DD>` section to the right of the reviewed frames. It contains the summary, the requirement checklist, numbered pins with finding cards, and dashed placeholders for missing states.
 
-If a review section for the same Jira key already exists, compare the two first. Mark each old finding as Fixed or Still open, then replace the old section.
+If a review section for the same Jira key already exists, compare the two first. Mark each old finding as Corrigido or Ainda aberto, then replace the old section.
 
 ## 7. Questions for the PM
 
